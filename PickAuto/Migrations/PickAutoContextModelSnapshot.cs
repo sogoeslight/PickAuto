@@ -52,25 +52,46 @@ namespace PickAuto.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CarModelId");
+
+                    b.Property<int>("CarStatusId");
+
+                    b.Property<long>("Mileage");
+
+                    b.Property<decimal>("Purchase")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<decimal>("Rental")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarModelId");
+
+                    b.HasIndex("CarStatusId");
+
+                    b.ToTable("Car");
+                });
+
+            modelBuilder.Entity("PickAuto.Models.CarModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("FuelTypeId");
 
                     b.Property<int>("GearboxId");
 
                     b.Property<int>("ManufacturerId");
 
-                    b.Property<long>("Mileage");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25);
 
-                    b.Property<int>("ModelId");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("NumberOfSeats");
 
                     b.Property<DateTime>("ProductionYear");
-
-                    b.Property<decimal>("RentalPrice")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<short>("Seats");
 
                     b.Property<int>("WheelDriveId");
 
@@ -82,20 +103,16 @@ namespace PickAuto.Migrations
 
                     b.HasIndex("ManufacturerId");
 
-                    b.HasIndex("ModelId");
-
                     b.HasIndex("WheelDriveId");
 
-                    b.ToTable("Car");
+                    b.ToTable("CarModel");
                 });
 
-            modelBuilder.Entity("PickAuto.Models.CarModel", b =>
+            modelBuilder.Entity("PickAuto.Models.CarStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ManufacturerId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -103,9 +120,7 @@ namespace PickAuto.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ManufacturerId");
-
-                    b.ToTable("CarModel");
+                    b.ToTable("CarStatus");
                 });
 
             modelBuilder.Entity("PickAuto.Models.City", b =>
@@ -144,7 +159,7 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -164,7 +179,7 @@ namespace PickAuto.Migrations
                     b.Property<string>("Phone")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("CustomerId");
 
                     b.HasIndex("AddressId");
 
@@ -220,35 +235,25 @@ namespace PickAuto.Migrations
                     b.ToTable("Manufacturer");
                 });
 
-            modelBuilder.Entity("PickAuto.Models.Payment", b =>
+            modelBuilder.Entity("PickAuto.Models.Purchase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("AmountOfMoney");
-
-                    b.Property<int>("CarId");
-
-                    b.Property<int>("CustomerId");
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("PaymentDate");
 
-                    b.Property<int?>("RentalId");
-
-                    b.Property<int>("WorkerId");
+                    b.Property<int?>("WorkerId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId");
-
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("RentalId");
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Payment");
+                    b.ToTable("Purchase");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Rental", b =>
@@ -257,54 +262,23 @@ namespace PickAuto.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CarId");
+                    b.Property<int?>("CustomerId");
 
-                    b.Property<int>("CustomerId");
+                    b.Property<DateTime>("PaymentDate");
 
                     b.Property<DateTime>("RentalEnd");
 
                     b.Property<DateTime>("RentalStart");
 
-                    b.Property<int>("WorkerId");
+                    b.Property<int?>("WorkerId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CarId");
 
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("WorkerId");
 
                     b.ToTable("Rental");
-                });
-
-            modelBuilder.Entity("PickAuto.Models.Staff", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(25);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(25);
-
-                    b.Property<string>("Phone")
-                        .IsRequired();
-
-                    b.Property<int>("StoreId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("Staff");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Store", b =>
@@ -341,54 +315,90 @@ namespace PickAuto.Migrations
                     b.ToTable("WheelDrive");
                 });
 
+            modelBuilder.Entity("PickAuto.Models.Worker", b =>
+                {
+                    b.Property<int>("WorkerId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("Occupation")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("WorkplaceId");
+
+                    b.HasKey("WorkerId");
+
+                    b.HasIndex("WorkplaceId");
+
+                    b.ToTable("Worker");
+                });
+
             modelBuilder.Entity("PickAuto.Models.Address", b =>
                 {
                     b.HasOne("PickAuto.Models.City", "City")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PickAuto.Models.Car", b =>
                 {
-                    b.HasOne("PickAuto.Models.FuelType", "FuelType")
-                        .WithMany()
-                        .HasForeignKey("FuelTypeId")
+                    b.HasOne("PickAuto.Models.CarModel", "CarModel")
+                        .WithMany("Cars")
+                        .HasForeignKey("CarModelId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PickAuto.Models.Gearbox", "Gearbox")
-                        .WithMany()
-                        .HasForeignKey("GearboxId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PickAuto.Models.Manufacturer", "Manufacturer")
-                        .WithMany()
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PickAuto.Models.CarModel", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PickAuto.Models.WheelDrive", "WheelDrive")
-                        .WithMany()
-                        .HasForeignKey("WheelDriveId")
+                    b.HasOne("PickAuto.Models.CarStatus", "CarStatus")
+                        .WithMany("Cars")
+                        .HasForeignKey("CarStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PickAuto.Models.CarModel", b =>
                 {
+                    b.HasOne("PickAuto.Models.FuelType", "FuelType")
+                        .WithMany("CarModels")
+                        .HasForeignKey("FuelTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PickAuto.Models.Gearbox", "Gearbox")
+                        .WithMany("CarModels")
+                        .HasForeignKey("GearboxId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("PickAuto.Models.Manufacturer", "Manufacturer")
-                        .WithMany()
+                        .WithMany("CarModels")
                         .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PickAuto.Models.WheelDrive", "WheelDrive")
+                        .WithMany("CarModels")
+                        .HasForeignKey("WheelDriveId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PickAuto.Models.City", b =>
                 {
                     b.HasOne("PickAuto.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("Cities")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -404,57 +414,31 @@ namespace PickAuto.Migrations
             modelBuilder.Entity("PickAuto.Models.Manufacturer", b =>
                 {
                     b.HasOne("PickAuto.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("Manufacturers")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("PickAuto.Models.Payment", b =>
+            modelBuilder.Entity("PickAuto.Models.Purchase", b =>
                 {
-                    b.HasOne("PickAuto.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("PickAuto.Models.Customer")
+                        .WithMany("Purchases")
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("PickAuto.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PickAuto.Models.Rental", "Rental")
-                        .WithMany()
-                        .HasForeignKey("RentalId");
-
-                    b.HasOne("PickAuto.Models.Staff", "Worker")
-                        .WithMany()
-                        .HasForeignKey("WorkerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("PickAuto.Models.Worker")
+                        .WithMany("Purchases")
+                        .HasForeignKey("WorkerId");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Rental", b =>
                 {
-                    b.HasOne("PickAuto.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("PickAuto.Models.Customer")
+                        .WithMany("Rentals")
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("PickAuto.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PickAuto.Models.Staff", "Worker")
-                        .WithMany()
-                        .HasForeignKey("WorkerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PickAuto.Models.Staff", b =>
-                {
-                    b.HasOne("PickAuto.Models.Store", "Store")
-                        .WithMany("Workers")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("PickAuto.Models.Worker")
+                        .WithMany("Rentals")
+                        .HasForeignKey("WorkerId");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Store", b =>
@@ -462,6 +446,14 @@ namespace PickAuto.Migrations
                     b.HasOne("PickAuto.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PickAuto.Models.Worker", b =>
+                {
+                    b.HasOne("PickAuto.Models.Store", "Workplace")
+                        .WithMany("Workers")
+                        .HasForeignKey("WorkplaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

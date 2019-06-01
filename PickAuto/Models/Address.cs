@@ -14,6 +14,9 @@ namespace PickAuto.Models
         [Required]
         [StringLength(15, MinimumLength = 4)]
         public string PostalCode { get; set; }
+
+
+
         [Required]
         public City City { get; set; }
     }

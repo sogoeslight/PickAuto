@@ -8,29 +8,21 @@ namespace PickAuto.Models
     {
         public int Id { get; set; }
         [Required]
-        public Manufacturer Manufacturer { get; set; }
-        [Required]
-        public CarModel Model { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime ProductionYear { get; set; }
-        [Required]
         public long Mileage { get; set; }
         [Required]
-        public short Seats { get; set; }
-        [Required]
-        public FuelType FuelType { get; set; }
-        [Required]
-        public Gearbox Gearbox { get; set; }
-        [Required]
-        public WheelDrive WheelDrive { get; set; }
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Purchase { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Price { get; set; }
+        public decimal Rental { get; set; }
+
+
+
         [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal RentalPrice { get; set; }
+        public CarModel CarModel { get; set; }
+        [Required]
+        public CarStatus CarStatus { get; set; }
     }
 }

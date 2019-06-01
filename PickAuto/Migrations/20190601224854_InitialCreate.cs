@@ -9,6 +9,19 @@ namespace PickAuto.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CarStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 25, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Country",
                 columns: table => new
                 {
@@ -129,15 +142,38 @@ namespace PickAuto.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 25, nullable: false),
+                    ProductionYear = table.Column<DateTime>(nullable: false),
+                    NumberOfSeats = table.Column<int>(nullable: false),
+                    GearboxId = table.Column<int>(nullable: false),
+                    FuelTypeId = table.Column<int>(nullable: false),
+                    WheelDriveId = table.Column<int>(nullable: false),
                     ManufacturerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarModel", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_CarModel_FuelType_FuelTypeId",
+                        column: x => x.FuelTypeId,
+                        principalTable: "FuelType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CarModel_GearBox_GearboxId",
+                        column: x => x.GearboxId,
+                        principalTable: "GearBox",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_CarModel_Manufacturer_ManufacturerId",
                         column: x => x.ManufacturerId,
                         principalTable: "Manufacturer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CarModel_WheelDrive_WheelDriveId",
+                        column: x => x.WheelDriveId,
+                        principalTable: "WheelDrive",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -146,17 +182,17 @@ namespace PickAuto.Migrations
                 name: "Customer",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AddressId = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 25, nullable: false),
                     LastName = table.Column<string>(maxLength: 25, nullable: false),
                     Phone = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false)
+                    Email = table.Column<string>(nullable: false),
+                    AddressId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_Customer", x => x.CustomerId);
                     table.ForeignKey(
                         name: "FK_Customer_Address_AddressId",
                         column: x => x.AddressId,
@@ -191,73 +227,79 @@ namespace PickAuto.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ManufacturerId = table.Column<int>(nullable: false),
-                    ModelId = table.Column<int>(nullable: false),
-                    ProductionYear = table.Column<DateTime>(nullable: false),
                     Mileage = table.Column<long>(nullable: false),
-                    Seats = table.Column<short>(nullable: false),
-                    FuelTypeId = table.Column<int>(nullable: false),
-                    GearboxId = table.Column<int>(nullable: false),
-                    WheelDriveId = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    RentalPrice = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
+                    Purchase = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    Rental = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    CarModelId = table.Column<int>(nullable: false),
+                    CarStatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Car", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Car_FuelType_FuelTypeId",
-                        column: x => x.FuelTypeId,
-                        principalTable: "FuelType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Car_GearBox_GearboxId",
-                        column: x => x.GearboxId,
-                        principalTable: "GearBox",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Car_Manufacturer_ManufacturerId",
-                        column: x => x.ManufacturerId,
-                        principalTable: "Manufacturer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Car_CarModel_ModelId",
-                        column: x => x.ModelId,
+                        name: "FK_Car_CarModel_CarModelId",
+                        column: x => x.CarModelId,
                         principalTable: "CarModel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car_WheelDrive_WheelDriveId",
-                        column: x => x.WheelDriveId,
-                        principalTable: "WheelDrive",
+                        name: "FK_Car_CarStatus_CarStatusId",
+                        column: x => x.CarStatusId,
+                        principalTable: "CarStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Staff",
+                name: "Worker",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    WorkerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(maxLength: 25, nullable: false),
                     LastName = table.Column<string>(maxLength: 25, nullable: false),
                     Phone = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    StoreId = table.Column<int>(nullable: false)
+                    Occupation = table.Column<string>(maxLength: 25, nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    WorkplaceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Staff", x => x.Id);
+                    table.PrimaryKey("PK_Worker", x => x.WorkerId);
                     table.ForeignKey(
-                        name: "FK_Staff_Store_StoreId",
-                        column: x => x.StoreId,
+                        name: "FK_Worker_Store_WorkplaceId",
+                        column: x => x.WorkplaceId,
                         principalTable: "Store",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Purchase",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PaymentDate = table.Column<DateTime>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: true),
+                    WorkerId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Purchase", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Purchase_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Purchase_Worker_WorkerId",
+                        column: x => x.WorkerId,
+                        principalTable: "Worker",
+                        principalColumn: "WorkerId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,75 +308,27 @@ namespace PickAuto.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerId = table.Column<int>(nullable: false),
-                    WorkerId = table.Column<int>(nullable: false),
-                    CarId = table.Column<int>(nullable: false),
                     RentalStart = table.Column<DateTime>(nullable: false),
-                    RentalEnd = table.Column<DateTime>(nullable: false)
+                    RentalEnd = table.Column<DateTime>(nullable: false),
+                    PaymentDate = table.Column<DateTime>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: true),
+                    WorkerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rental", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rental_Car_CarId",
-                        column: x => x.CarId,
-                        principalTable: "Car",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Rental_Customer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Rental_Staff_WorkerId",
-                        column: x => x.WorkerId,
-                        principalTable: "Staff",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Payment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerId = table.Column<int>(nullable: false),
-                    WorkerId = table.Column<int>(nullable: false),
-                    RentalId = table.Column<int>(nullable: true),
-                    CarId = table.Column<int>(nullable: false),
-                    AmountOfMoney = table.Column<long>(nullable: false),
-                    PaymentDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Payment_Car_CarId",
-                        column: x => x.CarId,
-                        principalTable: "Car",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_Rental_RentalId",
-                        column: x => x.RentalId,
-                        principalTable: "Rental",
-                        principalColumn: "Id",
+                        principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Payment_Staff_WorkerId",
+                        name: "FK_Rental_Worker_WorkerId",
                         column: x => x.WorkerId,
-                        principalTable: "Staff",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "Worker",
+                        principalColumn: "WorkerId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -343,34 +337,34 @@ namespace PickAuto.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_FuelTypeId",
+                name: "IX_Car_CarModelId",
                 table: "Car",
+                column: "CarModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Car_CarStatusId",
+                table: "Car",
+                column: "CarStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarModel_FuelTypeId",
+                table: "CarModel",
                 column: "FuelTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_GearboxId",
-                table: "Car",
+                name: "IX_CarModel_GearboxId",
+                table: "CarModel",
                 column: "GearboxId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car_ManufacturerId",
-                table: "Car",
-                column: "ManufacturerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car_ModelId",
-                table: "Car",
-                column: "ModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car_WheelDriveId",
-                table: "Car",
-                column: "WheelDriveId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarModel_ManufacturerId",
                 table: "CarModel",
                 column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarModel_WheelDriveId",
+                table: "CarModel",
+                column: "WheelDriveId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_City_CountryId",
@@ -388,29 +382,14 @@ namespace PickAuto.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_CarId",
-                table: "Payment",
-                column: "CarId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payment_CustomerId",
-                table: "Payment",
+                name: "IX_Purchase_CustomerId",
+                table: "Purchase",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_RentalId",
-                table: "Payment",
-                column: "RentalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payment_WorkerId",
-                table: "Payment",
+                name: "IX_Purchase_WorkerId",
+                table: "Purchase",
                 column: "WorkerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rental_CarId",
-                table: "Rental",
-                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rental_CustomerId",
@@ -423,32 +402,38 @@ namespace PickAuto.Migrations
                 column: "WorkerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Staff_StoreId",
-                table: "Staff",
-                column: "StoreId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Store_AddressId",
                 table: "Store",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Worker_WorkplaceId",
+                table: "Worker",
+                column: "WorkplaceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Payment");
+                name: "Car");
+
+            migrationBuilder.DropTable(
+                name: "Purchase");
 
             migrationBuilder.DropTable(
                 name: "Rental");
 
             migrationBuilder.DropTable(
-                name: "Car");
+                name: "CarModel");
+
+            migrationBuilder.DropTable(
+                name: "CarStatus");
 
             migrationBuilder.DropTable(
                 name: "Customer");
 
             migrationBuilder.DropTable(
-                name: "Staff");
+                name: "Worker");
 
             migrationBuilder.DropTable(
                 name: "FuelType");
@@ -457,16 +442,13 @@ namespace PickAuto.Migrations
                 name: "GearBox");
 
             migrationBuilder.DropTable(
-                name: "CarModel");
+                name: "Manufacturer");
 
             migrationBuilder.DropTable(
                 name: "WheelDrive");
 
             migrationBuilder.DropTable(
                 name: "Store");
-
-            migrationBuilder.DropTable(
-                name: "Manufacturer");
 
             migrationBuilder.DropTable(
                 name: "Address");

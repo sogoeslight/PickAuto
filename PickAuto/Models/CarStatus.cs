@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PickAuto.Models
 {
-    public class Manufacturer
+    public class CarStatus
     {
         public int Id { get; set; }
         [Required]
@@ -11,10 +14,6 @@ namespace PickAuto.Models
         public string Name { get; set; }
 
 
-
-        [Required]
-        public Country Country { get; set; }
-
-        public ICollection<CarModel> CarModels { get; set; }
+        public ICollection<Car> Cars { get; set; }
     }
 }

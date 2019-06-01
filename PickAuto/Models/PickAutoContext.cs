@@ -18,10 +18,11 @@ namespace PickAuto.Models
         public DbSet<FuelType> FuelType { get; set; }
         public DbSet<Gearbox> GearBox { get; set; }
         public DbSet<Manufacturer> Manufacturer { get; set; }
-        public DbSet<Payment> Payment { get; set; }
         public DbSet<Rental> Rental { get; set; }
-        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Worker> Worker { get; set; }
         public DbSet<Store> Store { get; set; }
         public DbSet<WheelDrive> WheelDrive { get; set; }
+        public DbSet<Purchase> Purchase { get; set; }
+        public DbSet<CarStatus> CarStatus { get; set; }
     }
 }

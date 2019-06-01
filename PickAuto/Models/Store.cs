@@ -9,8 +9,14 @@ namespace PickAuto.Models
         [Required]
         [StringLength(35, MinimumLength = 2)]
         public string Name { get; set; }
+
+
+
         [Required]
         public Address Address { get; set; }
-        public ICollection<Staff> Workers { get; set; }
+
+
+
+        public ICollection<Worker> Workers { get; set; }
     }
 }
