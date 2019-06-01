@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace PickAuto.Models
 {
@@ -13,20 +9,20 @@ namespace PickAuto.Models
         {
         }
 
-        public DbSet<PickAuto.Models.Address> Address { get; set; }
-        public DbSet<PickAuto.Models.Car> Car { get; set; }
-        public DbSet<PickAuto.Models.CarModel> CarModel { get; set; }
-        public DbSet<PickAuto.Models.City> City { get; set; }
-        public DbSet<PickAuto.Models.Country> Country { get; set; }
-        public DbSet<PickAuto.Models.Customer> Customer { get; set; }
-        public DbSet<PickAuto.Models.ErrorViewModel> ErrorViewModel { get; set; }
-        public DbSet<PickAuto.Models.FuelType> FuelType { get; set; }
-        public DbSet<PickAuto.Models.Gearbox> GearBox { get; set; }
-        public DbSet<PickAuto.Models.Manufacturer> Manufacturer { get; set; }
-        public DbSet<PickAuto.Models.Payment> Payment { get; set; }
-        public DbSet<PickAuto.Models.Rental> Rental { get; set; }
-        public DbSet<PickAuto.Models.Staff> Staff { get; set; }
-        public DbSet<PickAuto.Models.Store> Store { get; set; }
-        public DbSet<PickAuto.Models.WheelDrive> WheelDrive { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Car> Car { get; set; }
+        public DbSet<CarModel> CarModel { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<ErrorViewModel> ErrorViewModel { get; set; }
+        public DbSet<FuelType> FuelType { get; set; }
+        public DbSet<Gearbox> GearBox { get; set; }
+        public DbSet<Manufacturer> Manufacturer { get; set; }
+        public DbSet<Payment> Payment { get; set; }
+        public DbSet<Rental> Rental { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Store> Store { get; set; }
+        public DbSet<WheelDrive> WheelDrive { get; set; }
     }
 }
