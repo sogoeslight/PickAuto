@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PickAuto.Models
 {
@@ -25,9 +26,11 @@ namespace PickAuto.Models
         public WheelDrive WheelDrive { get; set; }
         [Required]
         [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
         [Required]
         [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal RentalPrice { get; set; }
     }
 }

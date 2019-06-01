@@ -15,7 +15,6 @@ namespace PickAuto.Models
         public DbSet<City> City { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<ErrorViewModel> ErrorViewModel { get; set; }
         public DbSet<FuelType> FuelType { get; set; }
         public DbSet<Gearbox> GearBox { get; set; }
         public DbSet<Manufacturer> Manufacturer { get; set; }
