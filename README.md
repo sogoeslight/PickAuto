@@ -12,6 +12,6 @@
 
 ### Setup:
 - Tools > NuGet Package Manager > Package Manager Console
--- Install-Package Microsoft.AspNetCore.App -Version 2.2.5
--- Add-Migration InitialCreate
--- Update-Database
+- Install-Package Microsoft.AspNetCore.App -Version 2.2.5
+- Add-Migration InitialCreate
+- Update-Database
