@@ -22,8 +22,8 @@ namespace PickAuto.Models
 
 
 
-        public int CarModelId { get; set; }
         [Display(Name = "Model")]
+        public int CarModelId { get; set; }
         public CarModel CarModel { get; set; }
 
         [Display(Name = "Status")]

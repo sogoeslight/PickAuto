@@ -8,6 +8,12 @@ namespace PickAuto.Models
     {
         public int AddressId { get; set; }
         [Required]
+        [Display(Name = "City")]
+        public int CityId { get; set; }
+        public City City { get; set; }
+
+
+        [Required]
         [StringLength(40, MinimumLength = 2)]
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -21,10 +27,6 @@ namespace PickAuto.Models
         public string PostalCode { get; set; }
 
 
-        [Required]
-        [Display(Name = "City")]
-        public int CityId { get; set; }
-        public City City { get; set; }
 
         public virtual Store Store { get; set; }
         public virtual Customer Customer { get; set; }

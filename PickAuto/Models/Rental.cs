@@ -21,6 +21,7 @@ namespace PickAuto.Models
         public DateTime PaymentDate { get; set; }
 
 
+        [Display(Name = "Car")]
         public int CarForeignKey { get; set; }
         public Car Car { get; set; }
 

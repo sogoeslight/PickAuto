@@ -7,13 +7,17 @@ namespace PickAuto.Models
     {
         public int CityId { get; set; }
         [Required]
-        [StringLength(25, MinimumLength = 2)]
-        public string Name { get; set; }
+        [Display(Name = "Country")]
+        public int CountryId { get; set; }
+        public Country Country { get; set; }
 
 
 
         [Required]
-        public Country Country { get; set; }
+        [StringLength(25, MinimumLength = 2)]
+        public string Name { get; set; }
+
+
 
         public ICollection<Address> Addresses { get; set; }
     }
