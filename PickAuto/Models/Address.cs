@@ -6,7 +6,6 @@ namespace PickAuto.Models
 {
     public class Address
     {
-        [ForeignKey("Customer")]
         public int AddressId { get; set; }
         [Required]
         [StringLength(40, MinimumLength = 2)]

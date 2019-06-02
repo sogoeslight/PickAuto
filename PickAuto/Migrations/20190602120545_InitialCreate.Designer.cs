@@ -10,7 +10,7 @@ using PickAuto.Models;
 namespace PickAuto.Migrations
 {
     [DbContext(typeof(PickAutoContext))]
-    [Migration("20190601224854_InitialCreate")]
+    [Migration("20190602120545_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Address", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AddressId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -41,7 +41,7 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(15);
 
-                    b.HasKey("Id");
+                    b.HasKey("AddressId");
 
                     b.HasIndex("CityId");
 
@@ -50,23 +50,25 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Car", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CarModelId");
 
-                    b.Property<int>("CarStatusId");
+                    b.Property<int>("CarStatudId");
+
+                    b.Property<int?>("CarStatusId");
 
                     b.Property<long>("Mileage");
 
-                    b.Property<decimal>("Purchase")
+                    b.Property<decimal>("PurchasePrice")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<decimal>("Rental")
+                    b.Property<decimal>("RentalPrice")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CarId");
 
                     b.HasIndex("CarModelId");
 
@@ -77,7 +79,7 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.CarModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CarModelId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -97,7 +99,7 @@ namespace PickAuto.Migrations
 
                     b.Property<int>("WheelDriveId");
 
-                    b.HasKey("Id");
+                    b.HasKey("CarModelId");
 
                     b.HasIndex("FuelTypeId");
 
@@ -112,7 +114,7 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.CarStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CarStatusId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -120,14 +122,14 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("CarStatusId");
 
                     b.ToTable("CarStatus");
                 });
 
             modelBuilder.Entity("PickAuto.Models.City", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CityId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -137,7 +139,7 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("CityId");
 
                     b.HasIndex("CountryId");
 
@@ -146,7 +148,7 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Country", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CountryId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -154,18 +156,14 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.HasKey("Id");
+                    b.HasKey("CountryId");
 
                     b.ToTable("Country");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddressId");
+                    b.Property<int>("CustomerId");
 
                     b.Property<string>("Email")
                         .IsRequired();
@@ -183,14 +181,12 @@ namespace PickAuto.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.HasIndex("AddressId");
-
                     b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("PickAuto.Models.FuelType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FuelTypeId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -198,14 +194,14 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("FuelTypeId");
 
                     b.ToTable("FuelType");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Gearbox", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GearboxId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -213,14 +209,14 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("GearboxId");
 
                     b.ToTable("GearBox");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Manufacturer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ManufacturerId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -230,7 +226,7 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("ManufacturerId");
 
                     b.HasIndex("CountryId");
 
@@ -239,9 +235,11 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Purchase", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PurchaseId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarForeignKey");
 
                     b.Property<int?>("CustomerId");
 
@@ -249,7 +247,10 @@ namespace PickAuto.Migrations
 
                     b.Property<int?>("WorkerId");
 
-                    b.HasKey("Id");
+                    b.HasKey("PurchaseId");
+
+                    b.HasIndex("CarForeignKey")
+                        .IsUnique();
 
                     b.HasIndex("CustomerId");
 
@@ -260,9 +261,11 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Rental", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RentalId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarForeignKey");
 
                     b.Property<int?>("CustomerId");
 
@@ -274,7 +277,10 @@ namespace PickAuto.Migrations
 
                     b.Property<int?>("WorkerId");
 
-                    b.HasKey("Id");
+                    b.HasKey("RentalId");
+
+                    b.HasIndex("CarForeignKey")
+                        .IsUnique();
 
                     b.HasIndex("CustomerId");
 
@@ -285,26 +291,20 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Store", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddressId");
+                    b.Property<int>("StoreId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(35);
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
+                    b.HasKey("StoreId");
 
                     b.ToTable("Store");
                 });
 
             modelBuilder.Entity("PickAuto.Models.WheelDrive", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("WheelDriveId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -312,7 +312,7 @@ namespace PickAuto.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.HasKey("Id");
+                    b.HasKey("WheelDriveId");
 
                     b.ToTable("WheelDrive");
                 });
@@ -344,11 +344,11 @@ namespace PickAuto.Migrations
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("WorkplaceId");
+                    b.Property<int>("StoreId");
 
                     b.HasKey("WorkerId");
 
-                    b.HasIndex("WorkplaceId");
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Worker");
                 });
@@ -370,8 +370,7 @@ namespace PickAuto.Migrations
 
                     b.HasOne("PickAuto.Models.CarStatus", "CarStatus")
                         .WithMany("Cars")
-                        .HasForeignKey("CarStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CarStatusId");
                 });
 
             modelBuilder.Entity("PickAuto.Models.CarModel", b =>
@@ -408,8 +407,8 @@ namespace PickAuto.Migrations
             modelBuilder.Entity("PickAuto.Models.Customer", b =>
                 {
                     b.HasOne("PickAuto.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
+                        .WithOne("Customer")
+                        .HasForeignKey("PickAuto.Models.Customer", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -423,22 +422,32 @@ namespace PickAuto.Migrations
 
             modelBuilder.Entity("PickAuto.Models.Purchase", b =>
                 {
-                    b.HasOne("PickAuto.Models.Customer")
+                    b.HasOne("PickAuto.Models.Car", "Car")
+                        .WithOne("Purchase")
+                        .HasForeignKey("PickAuto.Models.Purchase", "CarForeignKey")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PickAuto.Models.Customer", "Customer")
                         .WithMany("Purchases")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("PickAuto.Models.Worker")
+                    b.HasOne("PickAuto.Models.Worker", "Worker")
                         .WithMany("Purchases")
                         .HasForeignKey("WorkerId");
                 });
 
             modelBuilder.Entity("PickAuto.Models.Rental", b =>
                 {
-                    b.HasOne("PickAuto.Models.Customer")
+                    b.HasOne("PickAuto.Models.Car", "Car")
+                        .WithOne("Rental")
+                        .HasForeignKey("PickAuto.Models.Rental", "CarForeignKey")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PickAuto.Models.Customer", "Customer")
                         .WithMany("Rentals")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("PickAuto.Models.Worker")
+                    b.HasOne("PickAuto.Models.Worker", "Worker")
                         .WithMany("Rentals")
                         .HasForeignKey("WorkerId");
                 });
@@ -446,16 +455,16 @@ namespace PickAuto.Migrations
             modelBuilder.Entity("PickAuto.Models.Store", b =>
                 {
                     b.HasOne("PickAuto.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
+                        .WithOne("Store")
+                        .HasForeignKey("PickAuto.Models.Store", "StoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PickAuto.Models.Worker", b =>
                 {
-                    b.HasOne("PickAuto.Models.Store", "Workplace")
+                    b.HasOne("PickAuto.Models.Store", "Store")
                         .WithMany("Workers")
-                        .HasForeignKey("WorkplaceId")
+                        .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

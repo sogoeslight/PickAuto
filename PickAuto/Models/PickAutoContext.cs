@@ -24,5 +24,17 @@ namespace PickAuto.Models
         public DbSet<WheelDrive> WheelDrive { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
         public DbSet<CarStatus> CarStatus { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>()
+                .HasOne(p => p.Rental)
+                .WithOne(i => i.Car)
+                .HasForeignKey<Rental>(b => b.CarForeignKey);
+            modelBuilder.Entity<Car>()
+                .HasOne(p => p.Purchase)
+                .WithOne(i => i.Car)
+                .HasForeignKey<Purchase>(b => b.CarForeignKey);
+        }
     }
 }

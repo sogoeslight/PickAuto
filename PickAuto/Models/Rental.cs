@@ -6,7 +6,6 @@ namespace PickAuto.Models
 {
     public class Rental
     {
-        [ForeignKey("Car")]
         public int RentalId { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -19,11 +18,13 @@ namespace PickAuto.Models
         public DateTime PaymentDate { get; set; }
 
 
-        public virtual Car Car { get; set; }
+        public int CarForeignKey { get; set; }
+        public Car Car { get; set; }
 
-        public int WorkerId { get; set; }
+
+        public int? WorkerId { get; set; }
         public Worker Worker { get; set; }
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public Customer Customer { get; set; }
     }
 }

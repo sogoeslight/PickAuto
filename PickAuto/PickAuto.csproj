@@ -5,61 +5,6 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20190601170921_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601170921_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601171117_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601171117_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172158_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172158_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172247_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172247_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172613_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172613_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172655_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172655_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172744_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172744_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172844_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172844_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601172939_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601172939_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601173157_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601173157_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601173246_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601173246_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601173338_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601173338_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601173706_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601173706_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601173950_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601173950_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601221918_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601221918_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601222038_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601222038_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601222621_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601222621_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601222811_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601222811_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601223642_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601223642_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601223757_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601223757_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601223947_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601223947_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601224104_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601224104_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601224223_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601224223_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601224328_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601224328_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601224404_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601224404_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190601224515_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190601224515_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.5" />
