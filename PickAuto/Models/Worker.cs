@@ -10,9 +10,11 @@ namespace PickAuto.Models
 
         [Required]
         [StringLength(25, MinimumLength = 2)]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(25, MinimumLength = 2)]
+        [StringLength(25, MinimumLength = 2)
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
         [Phone]
@@ -29,6 +31,7 @@ namespace PickAuto.Models
         public decimal Salary { get; set; }
 
 
+        [Display(Name = "Store")]
         public int StoreId { get; set; }
         public Store Store { get; set; }
 

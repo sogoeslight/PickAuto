@@ -16,8 +16,10 @@ namespace PickAuto.Models
         public Car Car { get; set; }
 
 
+        [Display(Name = "Worker")]
         public int? WorkerId { get; set; }
         public virtual Worker Worker { get; set; }
+        [Display(Name = "Customer")]
         public int? CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
