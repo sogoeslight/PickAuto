@@ -5,7 +5,7 @@ namespace PickAuto.Models
 {
     public class WheelDrive
     {
-        public int Id { get; set; }
+        public int WheelDriveId { get; set; }
         [Required]
         [StringLength(25, MinimumLength = 2)]
         public string Name { get; set; }

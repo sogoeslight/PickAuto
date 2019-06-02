@@ -6,7 +6,7 @@ namespace PickAuto.Models
 {
     public class Car
     {
-        public int Id { get; set; }
+        public int CarId { get; set; }
         [Required]
         public long Mileage { get; set; }
         [Required]

@@ -6,7 +6,7 @@ namespace PickAuto.Models
 {
     public class Purchase
     {
-        public int Id { get; set; }
+        public int PurchaseId { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }

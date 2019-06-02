@@ -6,7 +6,7 @@ namespace PickAuto.Models
 {
     public class Rental
     {
-        public int Id { get; set; }
+        public int RentalId { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime RentalStart { get; set; }

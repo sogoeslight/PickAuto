@@ -4,7 +4,7 @@ namespace PickAuto.Models
 {
     public class Address
     {
-        public int Id { get; set; }
+        public int AddressId { get; set; }
         [Required]
         [StringLength(40, MinimumLength = 2)]
         public string AddressLine1 { get; set; }
@@ -17,7 +17,6 @@ namespace PickAuto.Models
 
 
 
-        [Required]
         public City City { get; set; }
     }
 }
