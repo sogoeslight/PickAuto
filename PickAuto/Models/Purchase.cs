@@ -9,6 +9,7 @@ namespace PickAuto.Models
         public int PurchaseId { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Date of Payment")]
         public DateTime PaymentDate { get; set; }
 
 

@@ -13,7 +13,7 @@ namespace PickAuto.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(25, MinimumLength = 2)
+        [StringLength(25, MinimumLength = 2)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
