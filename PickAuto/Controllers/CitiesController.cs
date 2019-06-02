@@ -21,7 +21,8 @@ namespace PickAuto.Controllers
         // GET: Cities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.City.ToListAsync());
+            var pickAutoContext = _context.City.Include(c => c.Country);
+            return View(await pickAutoContext.ToListAsync());
         }
 
         // GET: Cities/Details/5
@@ -33,6 +34,7 @@ namespace PickAuto.Controllers
             }
 
             var city = await _context.City
+                .Include(c => c.Country)
                 .FirstOrDefaultAsync(m => m.CityId == id);
             if (city == null)
             {
@@ -45,6 +47,7 @@ namespace PickAuto.Controllers
         // GET: Cities/Create
         public IActionResult Create()
         {
+            ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace PickAuto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CityId,Name")] City city)
+        public async Task<IActionResult> Create([Bind("CityId,CountryId,Name")] City city)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace PickAuto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name", city.CountryId);
             return View(city);
         }
 
@@ -77,6 +81,7 @@ namespace PickAuto.Controllers
             {
                 return NotFound();
             }
+            ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name", city.CountryId);
             return View(city);
         }
 
@@ -85,7 +90,7 @@ namespace PickAuto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CityId,Name")] City city)
+        public async Task<IActionResult> Edit(int id, [Bind("CityId,CountryId,Name")] City city)
         {
             if (id != city.CityId)
             {
@@ -112,6 +117,7 @@ namespace PickAuto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name", city.CountryId);
             return View(city);
         }
 
@@ -124,6 +130,7 @@ namespace PickAuto.Controllers
             }
 
             var city = await _context.City
+                .Include(c => c.Country)
                 .FirstOrDefaultAsync(m => m.CityId == id);
             if (city == null)
             {

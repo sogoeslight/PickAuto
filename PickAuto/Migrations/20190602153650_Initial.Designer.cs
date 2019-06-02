@@ -10,8 +10,8 @@ using PickAuto.Models;
 namespace PickAuto.Migrations
 {
     [DbContext(typeof(PickAutoContext))]
-    [Migration("20190602120545_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190602153650_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

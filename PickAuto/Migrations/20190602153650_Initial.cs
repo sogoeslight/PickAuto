@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PickAuto.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,8 +79,8 @@ namespace PickAuto.Migrations
                 {
                     CityId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 25, nullable: false),
-                    CountryId = table.Column<int>(nullable: false)
+                    CountryId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,10 +119,10 @@ namespace PickAuto.Migrations
                 {
                     AddressId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CityId = table.Column<int>(nullable: false),
                     AddressLine1 = table.Column<string>(maxLength: 40, nullable: false),
                     AddressLine2 = table.Column<string>(maxLength: 40, nullable: false),
-                    PostalCode = table.Column<string>(maxLength: 15, nullable: false),
-                    CityId = table.Column<int>(nullable: false)
+                    PostalCode = table.Column<string>(maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
