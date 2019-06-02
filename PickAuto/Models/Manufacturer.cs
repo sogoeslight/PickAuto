@@ -12,7 +12,7 @@ namespace PickAuto.Models
 
 
 
-        [Required]
+        public int CountryId { get; set; }
         public Country Country { get; set; }
 
         public ICollection<CarModel> CarModels { get; set; }

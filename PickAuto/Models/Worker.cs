@@ -29,8 +29,8 @@ namespace PickAuto.Models
         public decimal Salary { get; set; }
 
 
-        [Required]
-        public Store Workplace { get; set; }
+        public int StoreId { get; set; }
+        public Store Store { get; set; }
 
         public ICollection<Purchase> Purchases { get; set; }
         public ICollection<Rental> Rentals { get; set; }

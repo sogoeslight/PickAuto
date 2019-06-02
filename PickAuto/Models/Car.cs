@@ -12,17 +12,21 @@ namespace PickAuto.Models
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Purchase { get; set; }
+        public decimal PurchasePrice { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Rental { get; set; }
+        public decimal RentalPrice { get; set; }
 
 
 
-        [Required]
+        public int CarModelId { get; set; }
         public CarModel CarModel { get; set; }
-        [Required]
+
+        public int CarStatudId { get; set; }
         public CarStatus CarStatus { get; set; }
+
+        public virtual Purchase Purchase { get; set; }
+        public virtual Rental Rental { get; set; }
     }
 }

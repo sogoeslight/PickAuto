@@ -10,6 +10,8 @@ namespace PickAuto.Models
         [StringLength(25, MinimumLength = 2)]
         public string Name { get; set; }
 
+
+
         public ICollection<CarModel> CarModels { get; set; }
     }
 }

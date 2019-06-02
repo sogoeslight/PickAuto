@@ -20,14 +20,13 @@ namespace PickAuto.Models
 
 
 
-        [Required]
+        public int GearboxId { get; set; }
         public Gearbox Gearbox { get; set; }
-        [Required]
+        public int FuelTypeId { get; set; }
         public FuelType FuelType { get; set; }
-        [Required]
+        public int WheelDriveId { get; set; }
         public WheelDrive WheelDrive { get; set; }
-        [Required]
-        //[ForeignKey("ManufacturerID")]
+        public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
 
         public ICollection<Car> Cars { get; set; }
