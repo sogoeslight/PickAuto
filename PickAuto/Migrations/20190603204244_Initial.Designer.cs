@@ -10,7 +10,7 @@ using PickAuto.Models;
 namespace PickAuto.Migrations
 {
     [DbContext(typeof(PickAutoContext))]
-    [Migration("20190603184429_Initial")]
+    [Migration("20190603204244_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace PickAuto.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("EngineLiters");
+                    b.Property<decimal>("EngineLiters");
 
                     b.Property<int>("FuelType");
 
@@ -209,7 +209,6 @@ namespace PickAuto.Migrations
                         .HasMaxLength(40);
 
                     b.Property<string>("AddressLine2")
-                        .IsRequired()
                         .HasMaxLength(40);
 
                     b.Property<string>("City")

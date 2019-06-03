@@ -61,7 +61,7 @@ namespace PickAuto.Migrations
                     Country = table.Column<string>(maxLength: 30, nullable: false),
                     City = table.Column<string>(maxLength: 30, nullable: false),
                     AddressLine1 = table.Column<string>(maxLength: 40, nullable: false),
-                    AddressLine2 = table.Column<string>(maxLength: 40, nullable: false),
+                    AddressLine2 = table.Column<string>(maxLength: 40, nullable: true),
                     PostalCode = table.Column<string>(maxLength: 15, nullable: false)
                 },
                 constraints: table =>
@@ -81,7 +81,7 @@ namespace PickAuto.Migrations
                     NumberOfSeats = table.Column<int>(nullable: false),
                     FuelType = table.Column<int>(nullable: false),
                     GearboxId = table.Column<int>(nullable: false),
-                    EngineLiters = table.Column<int>(nullable: false),
+                    EngineLiters = table.Column<decimal>(nullable: false),
                     WheelDrive = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
