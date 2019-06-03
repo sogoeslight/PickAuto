@@ -8,6 +8,8 @@ public enum FuelType
     Diesel,
     [Display(Name = "Electric")]
     Electric,
+    [Display(Name = "Electric-Petrol")]
+    ElectricPetrol,
     [Display(Name = "Gas")]
     Gas
 }

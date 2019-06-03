@@ -25,8 +25,7 @@ namespace PickAuto.Models
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
 
-        [Required]
-        [StringLength(40, MinimumLength = 2)]
+        [StringLength(40)]
         [Display(Name = "Address Line 2")]
         public string AddressLine2 { get; set; }
 

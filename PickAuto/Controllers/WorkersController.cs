@@ -47,7 +47,7 @@ namespace PickAuto.Controllers
         // GET: Workers/Create
         public IActionResult Create()
         {
-            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "AddressLine1");
+            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "Name");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace PickAuto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "AddressLine1", worker.StoreId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "Name", worker.StoreId);
             return View(worker);
         }
 
@@ -81,7 +81,7 @@ namespace PickAuto.Controllers
             {
                 return NotFound();
             }
-            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "AddressLine1", worker.StoreId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "Name", worker.StoreId);
             return View(worker);
         }
 
@@ -117,7 +117,7 @@ namespace PickAuto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "AddressLine1", worker.StoreId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "StoreId", "Name", worker.StoreId);
             return View(worker);
         }
 

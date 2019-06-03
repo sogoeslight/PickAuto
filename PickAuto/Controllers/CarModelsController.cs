@@ -49,7 +49,7 @@ namespace PickAuto.Controllers
         public IActionResult Create()
         {
             ViewData["GearboxId"] = new SelectList(_context.GearBox, "GearboxId", "Name");
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Country");
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Name");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace PickAuto.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["GearboxId"] = new SelectList(_context.GearBox, "GearboxId", "Name", carModel.GearboxId);
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Country", carModel.ManufacturerId);
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Name", carModel.ManufacturerId);
             return View(carModel);
         }
 
@@ -85,7 +85,7 @@ namespace PickAuto.Controllers
                 return NotFound();
             }
             ViewData["GearboxId"] = new SelectList(_context.GearBox, "GearboxId", "Name", carModel.GearboxId);
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Country", carModel.ManufacturerId);
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Name", carModel.ManufacturerId);
             return View(carModel);
         }
 
@@ -122,7 +122,7 @@ namespace PickAuto.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["GearboxId"] = new SelectList(_context.GearBox, "GearboxId", "Name", carModel.GearboxId);
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Country", carModel.ManufacturerId);
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturer, "ManufacturerId", "Name", carModel.ManufacturerId);
             return View(carModel);
         }
 
