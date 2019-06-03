@@ -2,7 +2,7 @@
 
 public enum CarStatus
 {
-    [Display(Name = "Avvailable")]
+    [Display(Name = "Available")]
     Available,
     [Display(Name = "In Rental")]
     InRental,

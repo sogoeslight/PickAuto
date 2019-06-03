@@ -47,7 +47,7 @@ namespace PickAuto.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
-            ViewData["CarModelId"] = new SelectList(_context.CarModel, "CarModelId", "Name");
+            ViewData["CarModelId"] = new SelectList(_context.CarModel, "CarModelId", "Name", "ManufacturerId");
             return View();
         }
 

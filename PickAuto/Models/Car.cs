@@ -16,6 +16,7 @@ namespace PickAuto.Models
 
         [Required]
         [Range(0, 999999)]
+        [Display(Name = "Mileage, km")]
         public long Mileage { get; set; }
 
         [Required]

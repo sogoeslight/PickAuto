@@ -19,8 +19,9 @@ namespace PickAuto.Models
         public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "Year")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime ProductionYear { get; set; }
 
         [Required]
@@ -40,8 +41,8 @@ namespace PickAuto.Models
 
         [Required]
         [Range(0, 12)]
-        [Display(Name = "Seats")]
-        public int EngineLiters { get; set; }
+        [Display(Name = "Engine Liters")]
+        public decimal EngineLiters { get; set; }
 
         [Required]
         [Display(Name = "Wheel Drive")]

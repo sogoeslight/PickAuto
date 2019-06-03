@@ -25,12 +25,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="BusinessSegment" class="control-label"></label>
-                <select asp-for="BusinessSegment" class="form-control"></select>
+                <select asp-for="BusinessSegment" class="form-control" asp-items="Html.GetEnumSelectList<BusinessSegment>()"></select>
                 <span asp-validation-for="BusinessSegment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CarStatus" class="control-label"></label>
-                <select asp-for="CarStatus" class="form-control"></select>
+                <select asp-for="CarStatus" class="form-control" asp-items="Html.GetEnumSelectList<CarStatus>()"></select>
                 <span asp-validation-for="CarStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
