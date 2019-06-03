@@ -7,30 +7,22 @@ namespace PickAuto.Models
     public class Car
     {
         public int CarId { get; set; }
-        [Required]
-        public long Mileage { get; set; }
-        [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18, 2)")]
-        [Display(Name = "Purchase Price")]
-        public decimal PurchasePrice { get; set; }
-        [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18, 2)")]
-        [Display(Name = "Rental Price")]
-        public decimal RentalPrice { get; set; }
 
-
-
+        [Required]
         [Display(Name = "Model")]
         public int CarModelId { get; set; }
         public CarModel CarModel { get; set; }
 
-        [Display(Name = "Status")]
-        public int CarStatudId { get; set; }
-        public CarStatus CarStatus { get; set; }
+        [Required]
+        [Range(0, 999999)]
+        public long Mileage { get; set; }
 
-        public virtual Purchase Purchase { get; set; }
-        public virtual Rental Rental { get; set; }
+        [Required]
+        [Display(Name = "Business Segment")]
+        public BusinessSegment BusinessSegment { get; set; }
+
+        [Required]
+        [Display(Name = "Status")]
+        public CarStatus CarStatus { get; set; }
     }
 }
