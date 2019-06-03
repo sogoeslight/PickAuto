@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace PickAuto.Models
 {
@@ -19,5 +20,5 @@ namespace PickAuto.Models
         public DbSet<Store> Store { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
 
-    }
+     }
 }

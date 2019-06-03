@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Database Info";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Database Code Structure</h1>
+    <h3> To check out live model insert code below <a href=" https://dbdiagram.io/d">here</a></h3>    
+</div>
+
+<div class="row" style="display: flex;">
+    <div class="column" style="flex: 50%;">
+        <p>
+            Table worker {<br />
+            id int [pk]<br />
+            first_name varchar<br />
+            last_name varchar<br />
+            phone int<br />
+            email varchar<br />
+            workplace_id int [ref: > store.id]<br />
+            occupation varchar<br />
+            salary decimal<br />
+            }<br />
+            <br />
+            Table store {<br />
+            id int [pk]<br />
+            name varchar<br />
+            country varchar<br />
+            city varchar<br />
+            address_line1 varchar<br />
+            address_line2 varchar<br />
+            postal_code varchar<br />
+            }<br />
+            <br />
+            Table customer {<br />
+            id int [pk]<br />
+            first_name varchar<br />
+            last_name varchar<br />
+            phone int<br />
+            email varchar<br />
+            }<br />
+            <br />
+            Table gearbox {<br />
+            id int [pk]<br />
+            name varchar<br />
+            }<br />
+            <br />
+            Table car_model {<br />
+            id int [pk]<br />
+            manufacturer_id int [ref: > manufacturer.id]<br />
+            name varchar<br />
+            production_year year<br />
+            number_of_seats int<br />
+            fuel_type enum<br />
+            gearbox_id int [ref: > gearbox.id]<br />
+            engine_liters decimal<br />
+            wheel_drive enum<br />
+            }<br />
+            <br />
+        </p>
+    </div>
+    <div class="column" style="flex: 50%;">
+        <p>
+            Table car {<br />
+            id int [pk]<br />
+            model_id int [ref: > car_model.id]<br />
+            mileage int<br />
+            business_segment enum<br />
+            status enum<br />
+            }<br />
+            <br />
+            Table rental {<br />
+            id int [pk]<br />
+            car_id int [ref: - car.id]<br />
+            rental_rate decimal<br />
+            rental_start datetime<br />
+            rental_end datetime<br />
+            customer_id int [ref: > customer.id]<br />
+            worker_id int [ref: > worker.id]<br />
+            payment_date datetime<br />
+            }<br />
+            <br />
+            Table purchase {<br />
+            id int [pk]<br />
+            car_id int [ref: - car.id]<br />
+            price decimal<br />
+            customer_id int [ref: > customer.id]<br />
+            worker_id int [ref: > worker.id]<br />
+            payment_date datetime<br />
+            }<br />
+            <br />
+            Table manufacturer {<br />
+            id int [pk]<br />
+            name varchar<br />
+            country varchar<br />
+            }<br />
+        </p>
+    </div>
+</div>

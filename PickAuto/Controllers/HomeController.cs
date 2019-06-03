@@ -15,7 +15,12 @@ namespace PickAuto.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult DbModelPic()
+        {
+            return View();
+        }
+
+        public IActionResult DbCodeStructure()
         {
             return View();
         }
