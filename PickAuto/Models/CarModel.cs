@@ -30,6 +30,7 @@ namespace PickAuto.Models
 
         [Required]
         [Display(Name = "Fuel Type")]
+        [EnumDataType(typeof(FuelType))]
         public FuelType FuelType { get; set; }
 
         [Required]
@@ -44,6 +45,7 @@ namespace PickAuto.Models
 
         [Required]
         [Display(Name = "Wheel Drive")]
+        [EnumDataType(typeof(WheelDrive))]
         public WheelDrive WheelDrive { get; set; }
 
         public ICollection<Car> Cars { get; set; }

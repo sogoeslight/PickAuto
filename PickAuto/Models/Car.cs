@@ -11,6 +11,7 @@ namespace PickAuto.Models
         [Required]
         [Display(Name = "Model")]
         public int CarModelId { get; set; }
+        [Display(Name = "Model")]
         public CarModel CarModel { get; set; }
 
         [Required]
@@ -19,10 +20,12 @@ namespace PickAuto.Models
 
         [Required]
         [Display(Name = "Business Segment")]
+        [EnumDataType(typeof(BusinessSegment))]
         public BusinessSegment BusinessSegment { get; set; }
 
         [Required]
         [Display(Name = "Status")]
+        [EnumDataType(typeof(CarStatus))]
         public CarStatus CarStatus { get; set; }
     }
 }
