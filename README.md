@@ -9,6 +9,7 @@
 ### Requirements:
 - Visual Studio
 - Microsoft.AspnetCore.App metapackage
+- .NET Framework SDK v2.2
 
 ### Setup:
 - Tools > NuGet Package Manager > Package Manager Console
