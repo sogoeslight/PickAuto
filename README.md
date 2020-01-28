@@ -16,3 +16,5 @@
 - Install-Package Microsoft.AspNetCore.App -Version 2.2.5
 - Install https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.107-windows-x64-installer
 - Update-Database
+
+Launch via IIS Express
